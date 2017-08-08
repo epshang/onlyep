@@ -33,3 +33,11 @@ module.exports = merge(baseWebpackConfig, {
     new FriendlyErrorsPlugin()
   ]
 })
+
+{
+
+test: /\.less$/,
+
+loader: "style-loader!css-loader!less-loader",
+
+},
