@@ -1,64 +1,76 @@
 <template>
-	<div>
-		<!--footer-->
-		<div class="footer">
-		    <div class="content">
-		        <ul>
-		            <li @click="homepage" class="fl" :class="{active: isSelected}">
-		                <a class="homepage">
-		                    <i class="icon-homepage"></i>首页
-		                </a>
-		            </li>
-		            <li @click="courseList" class="fl">
-		                <a class="kind">
-		                    <i class="icon-kind"></i>课程
-		                </a>
-		            </li>
-		            <li class="fl"></li>
-		            <li @click="topicList" class="fl">
-		                <a class="topic">
-		                    <i class="icon-topic"></i>话题
-		                </a>
-		            </li>
-		            <li @click="userCenter" class="fl">
-		                <a class="person">
-		                    <i class="icon-person"></i>个人
-		                </a>
-		            </li>
-		        </ul>
-		        <div class="history">
-		            <i class="icon-history"></i>
-		        </div>
-		    </div>
-		</div>
-	</div>
+  <div>
+    <header-slide></header-slide>
+    <div class="main">
+      <keep-alive>
+        <router-view></router-view>
+      </keep-alive>
+    </div>
+    <!--footer-->
+    <div class="footer">
+      <div class="content">
+        <ul>
+          <li @click="homepage" class="fl" :class="{active: isSelected}">
+            <a class="homepage">
+              <i class="icon-homepage"></i>首页
+            </a>
+          </li>
+          <li @click="courseList" class="fl">
+            <a class="kind">
+              <i class="icon-kind"></i>课程
+            </a>
+          </li>
+          <li class="fl"></li>
+          <li @click="topicList" class="fl">
+            <a class="topic">
+              <i class="icon-topic"></i>话题
+            </a>
+          </li>
+          <li @click="userCenter" class="fl">
+            <a class="person">
+              <i class="icon-person"></i>个人
+            </a>
+          </li>
+        </ul>
+        <div class="history">
+          <i class="icon-history"></i>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
+import indexPage from '../pages/index'
+import headerSlide from '../components/headerSlide'
 
 export default {
-	data () {
-		return {
-			isSelected: false
-		}
+  components: {
+    indexPage,
+    headerSlide
+  },
+  data() {
+    return {
+      isSelected: false
+    }
   },
   computed: {
-    
+
   },
-	methods: {
-		homepage () {
+  methods: {
+    homepage() {
       console.log('homepage')
-		},
-		courseList () {
-			console.log('courseList')
-		},
-		topicList () {
-			console.log('topicList')
-		},
-		userCenter (){
-			console.log('userCenter')			
-		}
-	}
+    },
+    courseList() {
+      console.log('courseList')
+    },
+    topicList() {
+      console.log('topicList')
+    },
+    userCenter() {
+      console.log('userCenter')
+    }
+  }
 }
 </script>
 
@@ -79,7 +91,7 @@ export default {
       width: 100%;
       height: 100%;
       li {
-      	float: left;
+        float: left;
         width: 20%;
         height: 100%;
         a {
