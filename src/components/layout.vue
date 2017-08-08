@@ -4,7 +4,7 @@
 		<div class="footer">
 		    <div class="content">
 		        <ul>
-		            <li @click="homepage" class="fl active">
+		            <li @click="homepage" class="fl" :class="{active: isSelected}">
 		                <a class="homepage">
 		                    <i class="icon-homepage"></i>首页
 		                </a>
@@ -21,7 +21,7 @@
 		                </a>
 		            </li>
 		            <li @click="userCenter" class="fl">
-		                <aclass="person">
+		                <a class="person">
 		                    <i class="icon-person"></i>个人
 		                </a>
 		            </li>
@@ -39,21 +39,24 @@
 export default {
 	data () {
 		return {
-			a: '123'
+			isSelected: false
 		}
-	},
+  },
+  computed: {
+    
+  },
 	methods: {
 		homepage () {
-			alert('homepage')
+      console.log('homepage')
 		},
 		courseList () {
-			alert('courseList')
+			console.log('courseList')
 		},
 		topicList () {
-			alert('topicList')
+			console.log('topicList')
 		},
 		userCenter (){
-			alert('userCenter')			
+			console.log('userCenter')			
 		}
 	}
 }
