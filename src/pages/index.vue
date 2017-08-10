@@ -1,160 +1,193 @@
 <template>
- <!--main-->
-<div class="main">
+  <!--main-->
+  <div class="main">
     <!--热门直播-->
     <div class="hot-live">
-        <div class="title">热门直播</div>
-        <div class="hot-live-info item-info">
-            <div class="room-count texta-r item-info-l">
-                <i class="icon-room"></i>
-                <span>&nbsp;房间68</span>
-            </div>
-            <div class="room-moods item-info-r">
-                <i class="icon-moods"></i>
-                <span>&nbsp;人气109万人次</span>
-            </div>
+      <div class="title">热门直播</div>
+      <div class="hot-live-info item-info">
+        <div class="room-count texta-r item-info-l">
+          <i class="icon-room"></i>
+          <span>&nbsp;房间68</span>
         </div>
-        <div class="room-box swiper-li-container">
-            <ul class="room-item-list swiper-wrapper clearfix" id="js-hot-live"></ul>
+        <div class="room-moods item-info-r">
+          <i class="icon-moods"></i>
+          <span>&nbsp;人气109万人次</span>
         </div>
+      </div>
+      <div class="room-box swiper-li-container">
+        <ul class="room-item-list swiper-wrapper clearfix" id="js-hot-live"></ul>
+      </div>
     </div>
     <!--最新入驻-->
     <div class="new-settled">
-        <div class="title">最新入驻</div>
-        <div class="new-settled-info item-info">
-            <div class="room-count texta-r item-info-l">
-                <i class="icon-room"></i>
-                <span>&nbsp;房间68</span>
-            </div>
-            <div class="room-moods item-info-r">
-                <i class="icon-moods"></i>
-                <span>&nbsp;人气109万人次</span>
-            </div>
+      <div class="title">最新入驻</div>
+      <div class="new-settled-info item-info">
+        <div class="room-count texta-r item-info-l">
+          <i class="icon-room"></i>
+          <span>&nbsp;房间68</span>
         </div>
-        <div class="room-box swiper-li-container">
-            <ul class="room-item-list swiper-wrapper clearfix" id="js-new-settled"></ul>
+        <div class="room-moods item-info-r">
+          <i class="icon-moods"></i>
+          <span>&nbsp;人气109万人次</span>
         </div>
+      </div>
+      <div class="room-box swiper-li-container">
+        <ul class="room-item-list swiper-wrapper clearfix" id="js-new-settled">
+          <li class="room-item fl swiper-slide" v-for="item in newLiveRoom">
+            <a :href="'/' + item.name" target="_blank">
+              <img :src="item.imgUrl" alt="直播">
+            </a>
+            <div class="room-item-title">{{ item.title }}</div>
+            <div class="room-item-footer">
+              <span class="item-hot fl">
+                <i class="iconfont icon-renqi"></i> {{ item.hotCount }}
+              </span>
+              <span class="item-comment">
+                <i class="iconfont icon-room"></i> {{ item.name }}
+              </span>
+              <span class="name fr">{{ item.createTime }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <!--官方推荐-->
     <div class="official-recommend">
-        <div class="title">官方推荐</div>
-        <div class="official-recommend-info item-info">
-            <div class="room-count texta-r item-info-l">
-                <i class="icon-room"></i>
-                <span>&nbsp;房间68</span>
-            </div>
-            <div class="room-moods item-info-r">
-                <i class="icon-moods"></i>
-                <span>&nbsp;人气109万人次</span>
-            </div>
+      <div class="title">官方推荐</div>
+      <div class="official-recommend-info item-info">
+        <div class="room-count texta-r item-info-l">
+          <i class="icon-room"></i>
+          <span>&nbsp;房间68</span>
         </div>
-        <div class="room-box swiper-li-container">
-            <ul class="room-item-list swiper-wrapper clearfix" id="js-official-recommend"></ul>
+        <div class="room-moods item-info-r">
+          <i class="icon-moods"></i>
+          <span>&nbsp;人气109万人次</span>
         </div>
+      </div>
+      <div class="room-box swiper-li-container">
+        <ul class="room-item-list swiper-wrapper clearfix" id="js-official-recommend"></ul>
+      </div>
     </div>
     <!--精彩录播-->
     <div class="wonderful-recorder" style="display: none;">
-        <div class="title">精彩录播</div>
-        <div class="wonderful-recorder-info item-info">
-            <div class="video-count texta-r item-info-l">
-                <i class="icon-video"></i>
-                <span>&nbsp;视频68</span>
-            </div>
-            <div class="play-count item-info-r">
-                <i class="icon-play"></i>
-                <span>&nbsp;播放10万次</span>
-            </div>
+      <div class="title">精彩录播</div>
+      <div class="wonderful-recorder-info item-info">
+        <div class="video-count texta-r item-info-l">
+          <i class="icon-video"></i>
+          <span>&nbsp;视频68</span>
         </div>
-        <div class="room-box swiper-li-container">
-            <ul class="room-item-list swiper-wrapper clearfix">
-                <li class="room-item fl swiper-slide">
-                    <a href="###">
-                        <img src="img/mobile/img/20170224114032.png" alt="直播">
-                    </a>
-                    <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
-                    <div class="room-item-footer">
-                    <span class="item-hot">
-                        <i class="icon-hot"></i> 1158
-                    </span>
-                        <span class="item-comment">
-                        <i class="icon-comment"></i> 1158
-                    </span>
-                    </div>
-                </li>
-                <li class="room-item fl swiper-slide">
-                    <a href="###">
-                        <img src="img/mobile/img/20170224114032.png" alt="直播">
-                    </a>
-                    <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
-                    <div class="room-item-footer">
-                    <span class="item-hot">
-                        <i class="icon-hot"></i> 1158
-                    </span>
-                        <span class="item-comment">
-                        <i class="icon-comment"></i> 1158
-                    </span>
-                    </div>
-                </li>
-            </ul>
+        <div class="play-count item-info-r">
+          <i class="icon-play"></i>
+          <span>&nbsp;播放10万次</span>
         </div>
+      </div>
+      <div class="room-box swiper-li-container">
+        <ul class="room-item-list swiper-wrapper clearfix">
+          <li class="room-item fl swiper-slide">
+            <a href="###">
+              <img src="img/mobile/img/20170224114032.png" alt="直播">
+            </a>
+            <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
+            <div class="room-item-footer">
+              <span class="item-hot">
+                <i class="icon-hot"></i> 1158
+              </span>
+              <span class="item-comment">
+                <i class="icon-comment"></i> 1158
+              </span>
+            </div>
+          </li>
+          <li class="room-item fl swiper-slide">
+            <a href="###">
+              <img src="img/mobile/img/20170224114032.png" alt="直播">
+            </a>
+            <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
+            <div class="room-item-footer">
+              <span class="item-hot">
+                <i class="icon-hot"></i> 1158
+              </span>
+              <span class="item-comment">
+                <i class="icon-comment"></i> 1158
+              </span>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
     <!--精选话题-->
     <div class="selection-topic">
-        <div class="title">精选话题
-            <a href="###" class="more fr" style="display: none;">更多></a>
+      <div class="title">精选话题
+        <a href="###" class="more fr" style="display: none;">更多></a>
+      </div>
+      <div class="selection-topic-info item-info" style="display: block;">
+        <div class="topic-count texta-r item-info-l">
+          <!-- <i class="icon-topic"></i> -->
+          <span id="topicCount">&nbsp;话题0</span>
         </div>
-        <div class="selection-topic-info item-info" style="display: block;">
-            <div class="topic-count texta-r item-info-l">
-                <!-- <i class="icon-topic"></i> -->
-                <span id="topicCount">&nbsp;话题0</span>
-            </div>
-            <div class="discuss-count item-info-r">
-                <!-- <i class="icon-discuss"></i> -->
-                <span id="commentCount">&nbsp;讨论0</span>
-            </div>
+        <div class="discuss-count item-info-r">
+          <!-- <i class="icon-discuss"></i> -->
+          <span id="commentCount">&nbsp;讨论0</span>
         </div>
-        <div class="selection-topic-item-box swiper-container-4">
-            <ul class="swiper-wrapper" id="js-selected-topic">
-                
-            </ul>
-            <div class="swiper-pagination"></div>
-        </div>
+      </div>
+      <div class="selection-topic-item-box swiper-container-4">
+        <ul class="swiper-wrapper" id="js-selected-topic">
+  
+        </ul>
+        <div class="swiper-pagination"></div>
+      </div>
     </div>
     <!--名师推荐-->
     <div class="teacher-recommend swiper-container-2" style="display: none;">
-        <div class="title">名师推荐
-            <a href="###" class="more fr">更多></a>
-        </div>
-        <ul class="teacher-recommend-list swiper-wrapper clearfix" id="js-teacher-recommend"></ul>
+      <div class="title">名师推荐
+        <a href="###" class="more fr">更多></a>
+      </div>
+      <ul class="teacher-recommend-list swiper-wrapper clearfix" id="js-teacher-recommend"></ul>
     </div>
     <!--合作机构-->
     <div class="cooperative-agency">
-        <div class="title">王牌公会</div>
-        <div class="cooperative-agency-info item-info" style="display: block;">
-            <div class="topic-count texta-r item-info-l">
-                <i class="iconfont icon-momentposttopic"></i>
-                <span id="guildCount">&nbsp;公会0</span>
-            </div>
-            <div class="discuss-count item-info-r">
-                <i class="iconfont icon-taolun"></i>
-                <span id="teacherCount">&nbsp;0</span>
-            </div>
+      <div class="title">王牌公会</div>
+      <div class="cooperative-agency-info item-info" style="display: block;">
+        <div class="topic-count texta-r item-info-l">
+          <i class="iconfont icon-momentposttopic"></i>
+          <span id="guildCount">&nbsp;公会0</span>
         </div>
-        <div class="cooperative-agency-box swiper-container-3">
-            <ul class="swiper-wrapper" id="js-cooperative-agency">
-                
-            </ul>
+        <div class="discuss-count item-info-r">
+          <i class="iconfont icon-taolun"></i>
+          <span id="teacherCount">&nbsp;0</span>
         </div>
+      </div>
+      <div class="cooperative-agency-box swiper-container-3">
+        <ul class="swiper-wrapper" id="js-cooperative-agency">
+  
+        </ul>
+      </div>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-import prefix from '../interFace.js'
-var api = prefix
+import Axios from 'axios'
 export default {
+  created() {
+    var _this = this;
+    // $.ajax({
+    //   type: 'GET',
+    //   url: '/platform/indexInterface',
+    //   dataType: 'json',
+    //   success: (res) => {
+    //     console.log(res)
+    //   }
+    // })
+    Axios.post("/platform/indexInterface")
+      .then(function (rsp) {
+        _this.hotVideo = rsp.data.hotVideo
+        _this.newLiveRoom = rsp.data.newLiveRoom
+        console.log(rsp.data)
+      })
+  },
   data() {
     return {
+      arr: [1, 2, 3, 4],
       hotVideo: [],
       newLiveRoom: [],
       governmentAdvice: [],
@@ -162,18 +195,9 @@ export default {
       selectedTopic: [],
       newGuild: [],
       hotTeacher: [],
-      notices: []
+      notices: [],
+      aaa: 123
     }
-  },
-  created (){
-    $.ajax({
-      type: 'POST',
-      url: api+'/indexInterface',
-      dataType: 'json',
-      success: (res) => {
-        console.log(res)
-      }
-    })
   }
 }
 </script>
