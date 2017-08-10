@@ -1,58 +1,186 @@
 <template>
-  <div>
-
-  </div>
+ <!--main-->
+<div class="main">
+    <!--热门直播-->
+    <div class="hot-live">
+        <div class="title">热门直播</div>
+        <div class="hot-live-info item-info">
+            <div class="room-count texta-r item-info-l">
+                <i class="icon-room"></i>
+                <span>&nbsp;房间68</span>
+            </div>
+            <div class="room-moods item-info-r">
+                <i class="icon-moods"></i>
+                <span>&nbsp;人气109万人次</span>
+            </div>
+        </div>
+        <div class="room-box swiper-li-container">
+            <ul class="room-item-list swiper-wrapper clearfix" id="js-hot-live"></ul>
+        </div>
+    </div>
+    <!--最新入驻-->
+    <div class="new-settled">
+        <div class="title">最新入驻</div>
+        <div class="new-settled-info item-info">
+            <div class="room-count texta-r item-info-l">
+                <i class="icon-room"></i>
+                <span>&nbsp;房间68</span>
+            </div>
+            <div class="room-moods item-info-r">
+                <i class="icon-moods"></i>
+                <span>&nbsp;人气109万人次</span>
+            </div>
+        </div>
+        <div class="room-box swiper-li-container">
+            <ul class="room-item-list swiper-wrapper clearfix" id="js-new-settled"></ul>
+        </div>
+    </div>
+    <!--官方推荐-->
+    <div class="official-recommend">
+        <div class="title">官方推荐</div>
+        <div class="official-recommend-info item-info">
+            <div class="room-count texta-r item-info-l">
+                <i class="icon-room"></i>
+                <span>&nbsp;房间68</span>
+            </div>
+            <div class="room-moods item-info-r">
+                <i class="icon-moods"></i>
+                <span>&nbsp;人气109万人次</span>
+            </div>
+        </div>
+        <div class="room-box swiper-li-container">
+            <ul class="room-item-list swiper-wrapper clearfix" id="js-official-recommend"></ul>
+        </div>
+    </div>
+    <!--精彩录播-->
+    <div class="wonderful-recorder" style="display: none;">
+        <div class="title">精彩录播</div>
+        <div class="wonderful-recorder-info item-info">
+            <div class="video-count texta-r item-info-l">
+                <i class="icon-video"></i>
+                <span>&nbsp;视频68</span>
+            </div>
+            <div class="play-count item-info-r">
+                <i class="icon-play"></i>
+                <span>&nbsp;播放10万次</span>
+            </div>
+        </div>
+        <div class="room-box swiper-li-container">
+            <ul class="room-item-list swiper-wrapper clearfix">
+                <li class="room-item fl swiper-slide">
+                    <a href="###">
+                        <img src="img/mobile/img/20170224114032.png" alt="直播">
+                    </a>
+                    <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
+                    <div class="room-item-footer">
+                    <span class="item-hot">
+                        <i class="icon-hot"></i> 1158
+                    </span>
+                        <span class="item-comment">
+                        <i class="icon-comment"></i> 1158
+                    </span>
+                    </div>
+                </li>
+                <li class="room-item fl swiper-slide">
+                    <a href="###">
+                        <img src="img/mobile/img/20170224114032.png" alt="直播">
+                    </a>
+                    <div class="room-item-title">CME：黄金强力稳固1225 原油看跌40美元</div>
+                    <div class="room-item-footer">
+                    <span class="item-hot">
+                        <i class="icon-hot"></i> 1158
+                    </span>
+                        <span class="item-comment">
+                        <i class="icon-comment"></i> 1158
+                    </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--精选话题-->
+    <div class="selection-topic">
+        <div class="title">精选话题
+            <a href="###" class="more fr" style="display: none;">更多></a>
+        </div>
+        <div class="selection-topic-info item-info" style="display: block;">
+            <div class="topic-count texta-r item-info-l">
+                <!-- <i class="icon-topic"></i> -->
+                <span id="topicCount">&nbsp;话题0</span>
+            </div>
+            <div class="discuss-count item-info-r">
+                <!-- <i class="icon-discuss"></i> -->
+                <span id="commentCount">&nbsp;讨论0</span>
+            </div>
+        </div>
+        <div class="selection-topic-item-box swiper-container-4">
+            <ul class="swiper-wrapper" id="js-selected-topic">
+                
+            </ul>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <!--名师推荐-->
+    <div class="teacher-recommend swiper-container-2" style="display: none;">
+        <div class="title">名师推荐
+            <a href="###" class="more fr">更多></a>
+        </div>
+        <ul class="teacher-recommend-list swiper-wrapper clearfix" id="js-teacher-recommend"></ul>
+    </div>
+    <!--合作机构-->
+    <div class="cooperative-agency">
+        <div class="title">王牌公会</div>
+        <div class="cooperative-agency-info item-info" style="display: block;">
+            <div class="topic-count texta-r item-info-l">
+                <i class="iconfont icon-momentposttopic"></i>
+                <span id="guildCount">&nbsp;公会0</span>
+            </div>
+            <div class="discuss-count item-info-r">
+                <i class="iconfont icon-taolun"></i>
+                <span id="teacherCount">&nbsp;0</span>
+            </div>
+        </div>
+        <div class="cooperative-agency-box swiper-container-3">
+            <ul class="swiper-wrapper" id="js-cooperative-agency">
+                
+            </ul>
+        </div>
+    </div>
+</div>
 </template>
 
 <script>
+import prefix from '../interFace.js'
+var api = prefix
 export default {
   data() {
     return {
-      a: '1'
+      hotVideo: [],
+      newLiveRoom: [],
+      governmentAdvice: [],
+      videoRecord: [],
+      selectedTopic: [],
+      newGuild: [],
+      hotTeacher: [],
+      notices: []
     }
+  },
+  created (){
+    $.ajax({
+      type: 'POST',
+      url: api+'/indexInterface',
+      dataType: 'json',
+      success: (res) => {
+        console.log(res)
+      }
+    })
   }
 }
 </script>
 
-<style lang='less'>
+<style lang='less' scope>
 body {
   overflow-y: scroll;
-}
-
-.header-homepage {
-  position: relative;
-  .banner-box {
-    div {
-      img {
-        width: 100%;
-      }
-    }
-  }
-  .swiper-pagination {
-    bottom: 35/75rem !important;
-    .swiper-pagination-bullet {
-      width: 50/75rem;
-      height: 3/75rem;
-      border-radius: 0;
-      margin: 0 15/75rem;
-      opacity: 1;
-      background: url("../assets/img/icon/bullet.png") no-repeat;
-    }
-    .swiper-pagination-bullet-active {
-      background: url("../assets/img/icon/bullet_active.png") no-repeat;
-    }
-  }
-  .search-bar {
-    position: absolute;
-    top: 30/75rem;
-    right: 30/75rem;
-    width: 34/75rem;
-    height: 34/75rem;
-    background: url("../assets/img/icon/icon_search.png");
-    -webkit-background-size: 100%;
-    background-size: 100%;
-    z-index: 10;
-  }
 }
 
 .main {
