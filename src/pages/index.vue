@@ -1,7 +1,8 @@
 <template>
   <!--main-->
-  <div class="main">
+  <div class="main">  
     <!--热门直播-->
+    
     <div class="hot-live">
       <div class="title">热门直播</div>
       <div class="hot-live-info item-info">

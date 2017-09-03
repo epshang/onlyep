@@ -29,7 +29,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/platform': {
-        target: 'http://39.108.144.187',
+        target: 'http://live.ranyes.cn/',
         changeOrigin: true,
         pathRewrite: {
           '^/platform': '/platform'
