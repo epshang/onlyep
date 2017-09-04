@@ -71,6 +71,7 @@
     .menu-list
       display flex
       height 100%
+      box-shadow 0 0 20px #131419;
       .menu-item
         flex 1
         height 100%
