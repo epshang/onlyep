@@ -11,10 +11,7 @@ Vue.use(VueRouter)
 let router = new VueRouter({
 	mode: 'history',
 	routes: [
-		{
-			path: '/',
-			component: HomePage
-		},
+    { path: '/', redirect: '/homepage' },
 		{
 			path: '/homepage',
 			component: HomePage
@@ -26,5 +23,5 @@ new Vue({
 	el: '#app',
 	router,
 	template: '<App/>',
-	components: { App }  
+	components: { App }
 })
