@@ -1,6 +1,7 @@
 <template>
   <div>
-    i am index
+    <div class="header"></div>
+    
   </div>
 </template>
 
@@ -15,5 +16,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-
+  .header
+    height: 210px
+    background: teal
 </style>
