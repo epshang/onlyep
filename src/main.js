@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
-import HomePage from './components/homepage/homePage'
+import HomePage from './pages/homepage/homePage'
 
 import './common/stylus/index.styl'
 
