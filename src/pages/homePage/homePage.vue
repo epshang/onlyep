@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header">
-      <header-slide></header-slide>
+      <header-slide :slide-imgs="slideImgs"></header-slide>
     </div>
     
   </div>
@@ -15,7 +15,16 @@ export default {
   },
   data() {
     return {
-      pp: '1'
+      slideImgs: [{
+        type: 0,
+        name: 'banner1',
+        url: require('../../assets/homepage/home_banner1@2x.jpg')
+      },
+      {
+        type: 1,
+        name: 'banner2',
+        url: require('../../assets/homepage/home_banner2@2x.png')
+      }]
     }
   }
 }
@@ -24,5 +33,4 @@ export default {
 <style lang="stylus" rel="stylesheet/stylus">
   .header
     height: 210px
-    background red
 </style>
