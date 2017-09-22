@@ -1,6 +1,9 @@
 <template>
-  <div class="header">
-    <header-slide :slide-imgs="slideImgs"></header-slide>
+  <div class="homepage">
+    <div class="header">
+      <header-slide :slide-imgs="slideImgs"></header-slide>
+    </div>
+
   </div>
 </template>
 

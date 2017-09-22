@@ -61,6 +61,8 @@
 
   @import "./common/stylus/mixin.styl"
 
+  body
+    background #131419
   .menu-wrapper
     position: absolute
     left 0
