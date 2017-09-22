@@ -3,9 +3,15 @@
 import Vue from 'vue'
 import App from './App'
 import VueRouter from 'vue-router'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 import HomePage from './pages/homepage/homePage'
 
 import './common/stylus/index.styl'
+// starting with version 2.6.0, you need to manually introduce swiper's css
+require('swiper/dist/css/swiper.css')
+
+// mount with global
+Vue.use(VueAwesomeSwiper)
 
 Vue.use(VueRouter)
 let router = new VueRouter({

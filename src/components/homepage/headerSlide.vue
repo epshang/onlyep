@@ -1,88 +1,58 @@
+<!-- The ref attr used to find the swiper instance -->
 <template>
-  <div class="slide-wrapper">
-    <transition name="fade">
-      <div v-show="isShow" class="slide-item">
-        <a href="###">
-          <img :src="slideImgs[1].url" :alt="slideImgs[1].name" class="slide-img">
-        </a>
-      </div>
-    </transition>
-    <!-- <transition name="fade-old">
-      <div v-show="!isShow" class="slide-item">
-        <a href="###">
-          <img :src="slideImgs[nowIndex].url" :alt="slideImgs[nowIndex].name" class="slide-img">
-        </a>
-      </div>
-    </transition> -->
-  </div>
+  <swiper :options="swiperOption" :not-next-tick="notNextTick" ref="mySwiper">
+    <!-- slides -->
+    <swiper-slide v-for="(item,index) in slideImgs" :key="index">
+      <img :src="item.url" alt="" class="slide-img">
+    </swiper-slide>
+    <!-- Optional controls -->
+    <div class="swiper-pagination" slot="pagination"></div>
+  </swiper>
 </template>
 
 <script>
+// swiper options example:
 export default {
+  name: 'carrousel',
   props: {
     slideImgs: {
       type: Array,
       default: []
     }
   },
-	data() {
-		return {
-      nowIndex: 0,
-      isShow: true
-		}
-  },
-  computed: {
-    nextIndex() {
-      if(this.nowIndex === this.slideImgs.length - 1) {
-        return 0
-      } else {
-        return this.nowIndex + 1
+  data() {
+    return {
+      // NotNextTick is a component's own property, and if notNextTick is set to true, the component will not instantiate the swiper through NextTick, which means you can get the swiper object the first time (if you need to use the get swiper object to do what Things, then this property must be true)
+      // notNextTick是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
+      notNextTick: true,
+      swiperOption: {
+        // swiper optionss 所有的配置同swiper官方api配置
+        autoplay: 3000,
+        loop: true,
+        direction: 'horizontal',
+        autoHeight: true,
+        pagination: '.swiper-pagination'
       }
     }
   },
-  methods: {
-    goto(index) {
-      this.isShow = false
-      setTimeout(() => {
-        this.isShow = true
-        this.nowIndex = index
-      }, 10)
-    },
-    autoSlide() {
-      setInterval(() => {
-        this.goto(this.nextIndex)
-      }, 10000)
+  // you can find current swiper instance object like this, while the notNextTick property value must be true
+  // 如果你需要得到当前的swiper对象来做一些事情，你可以像下面这样定义一个方法属性来获取当前的swiper对象，同时notNextTick必须为true
+  computed: {
+    swiper() {
+      return this.$refs.mySwiper.swiper
     }
-  },
-  mounted() {
-    this.autoSlide()
   }
 }
 </script>
 
-<style lang="stylus" rel="stylesheet/stylus">
-  .slide-wrapper
-    height 210px
-    position relative
-    .slide-item
+<style lang="stylus" scoped>
+.swiper-container
+  width 100%
+  height 100%
+  .swiper-wrapper
+    width 100%
+    height 100%
+    .slide-img
       width 100%
       height 100%
-      position absolute
-      left 0
-      top 0
-      .slide-img
-        width 100%
-        height 100%
-  .fade-leave
-    opacity 0
-  .fade-enter-active
-    transition  all 10s linear
-    opacity 1
-  .fade-leave,.fade-enter
-    opacity 0
-  .fade-old-enter-active,.fade-old-leave-active
-    transition  all .5s linear
-    opacity 1
-  .fade-old-leave-to,.fade-old-enter-to
-    opacity 0
 </style>
