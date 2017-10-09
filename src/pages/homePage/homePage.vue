@@ -16,8 +16,8 @@
           </div>
         </div>
         <div class="rooms-wrapper">
-          <ul class="room-list">
-            <li class="room-item" v-for="(item, index) in hotVideo" :key="index">
+          <ul class="room-list clearfix">
+            <li class="room-item fl" v-for="(item, index) in hotVideo" :key="index">
               <div class="cover-img">
                 <img src="./1.jpg" alt="">
               </div>

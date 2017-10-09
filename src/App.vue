@@ -65,7 +65,7 @@
   body
     background bg-color
   .menu-wrapper
-    position: absolute
+    position fixed
     left 0
     bottom 0
     height 50px
