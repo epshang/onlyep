@@ -15,19 +15,23 @@ Vue.use(VueAwesomeSwiper)
 
 Vue.use(VueRouter)
 let router = new VueRouter({
-	mode: 'history',
-	routes: [
-    { path: '/', redirect: '/homepage' },
-		{
-			path: '/homepage',
-			component: HomePage
-		}
-	]
+  mode: 'history',
+  routes: [{
+      path: '/',
+      redirect: '/homepage'
+    },
+    {
+      path: '/homepage',
+      component: HomePage
+    }
+  ]
 })
 
 new Vue({
-	el: '#app',
-	router,
-	template: '<App/>',
-	components: { App }
+  el: '#app',
+  router,
+  template: '<App/>',
+  components: {
+    App
+  }
 })

@@ -59,21 +59,22 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
 
+  @import "./common/stylus/variable.styl"
   @import "./common/stylus/mixin.styl"
 
   body
-    background #131419
+    background bg-color
   .menu-wrapper
     position: absolute
     left 0
     bottom 0
     height 50px
     width 100%
-    background #131419
+    background bg-color
     .menu-list
       display flex
       height 100%
-      box-shadow 0 0 20px #131419;
+      box-shadow 0 0 20px bg-color;
       .menu-item
         flex 1
         height 100%
@@ -96,7 +97,7 @@
         .text
           display block
           font-size 11px
-          color #6d6b6c
+          color item-font
         &.active
           .icon
             &.homepage
@@ -108,7 +109,7 @@
             &.person
               bg-image('./assets/menu/person_1')
           .text
-            color #fdd947
+            color font-active
     .history-wrapper
       position absolute
       top -18px
@@ -119,7 +120,7 @@
       margin auto
       width 68px
       height 68px
-      background #131419
+      background bg-color
       border-radius 50%
       text-align center
       .icon
