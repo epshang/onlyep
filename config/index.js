@@ -28,11 +28,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/platform': {
+      '/api': {
         target: 'http://live.ranyes.cn/',
         changeOrigin: true,
         pathRewrite: {
-          '^/platform': '/platform'
+          '^/api': '/api'
         }
       }
     },
