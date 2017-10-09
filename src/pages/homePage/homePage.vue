@@ -15,9 +15,9 @@
               <span class="icon icon-popularity"></span>人气100万</div>
           </div>
         </div>
-        <div class="rooms-wrapper">
+        <div class="rooms-wrapper" ref="wrapper">
           <ul class="room-list clearfix">
-            <li class="room-item fl" v-for="(item, index) in hotVideo" :key="index">
+            <li class="room-item" v-for="(item, index) in hotVideo" :key="index">
               <div class="cover-img">
                 <img src="./1.jpg" alt="">
               </div>
@@ -40,6 +40,7 @@
 
 <script type="text/ecmascript-6">
 import HeaderSlide from '../../components/homepage/headerSlide'
+import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
   components: {
@@ -56,6 +57,17 @@ export default {
         //_this.videoRecord = response.data.videoRecord
         _this.selectedTopic = response.data.selectedTopic
         _this.newGuild = response.data.newGuild
+
+        _this.$nextTick(() => {
+          if (!_this.scroll) {
+            _this.scroll = new BScroll(_this.$refs.wrapper, {
+              eventPassthrough: 'vertical',
+              click: true
+            });
+          } else {
+            _this.scroll.refresh();
+          }
+        })
       })
       .catch(function(response) {
         console.log(response)
@@ -104,6 +116,10 @@ export default {
             font-size 10px
             line-height 20px
             color item-font
+            &.room
+              margin-right 10px
+            &.hot
+              margin-left 10px
             .icon
               display inline-block
               vertical-align top
@@ -111,10 +127,8 @@ export default {
               height 20px
               background-size 100%
               &.icon-room
-                margin-right 10px
                 bg-image('../../assets/homepage/home_roomIcon')
               &.icon-popularity
-              margin-left 10px
                 bg-image('../../assets/homepage/home_popularityIcon')
       .rooms-wrapper
         margin-top 20px
@@ -125,6 +139,7 @@ export default {
         background-size cover
         .room-list
           .room-item
+            display inline-block
             margin-left 10px
             width 192px
             .cover-img

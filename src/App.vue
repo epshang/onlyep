@@ -64,6 +64,7 @@
 
   body
     background bg-color
+    overflow hidden
   .menu-wrapper
     position fixed
     left 0
