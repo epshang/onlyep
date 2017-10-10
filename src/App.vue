@@ -59,8 +59,8 @@
 
 <style lang="stylus" rel="stylesheet/stylus">
 
-  @import "./common/stylus/variable.styl"
-  @import "./common/stylus/mixin.styl"
+  @import "common/stylus/variable.styl"
+  @import "common/stylus/mixin.styl"
 
   html
     overflow-x hidden
@@ -77,7 +77,7 @@
     .menu-list
       display flex
       height 100%
-      box-shadow 0 0 20px bg-color;
+      box-shadow 0 -5px 10px bg-color
       .menu-item
         flex 1
         height 100%
@@ -126,6 +126,7 @@
       background bg-color
       border-radius 50%
       text-align center
+      box-shadow 0 -5px 10px bg-color
       .icon
         display inline-block
         margin-top 5px

@@ -54,14 +54,56 @@
               <div class="title">{{item.title}}</div>
               <div class="room-item-footer">
                 <div class="item fl">
+                  <span class="icon icon-room"></span>{{item.name}}</div>
+                <div class="item">
+                  <span class="icon icon-renqi"></span>{{item.hotCount}}</div>
+                <div class="item fr">
+                  <span class="icon"></span>{{item.liveRoomName}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 官方推荐 -->
+      <div class="content-item governmentAdvice">
+        <div class="title-wrapper">
+          <h2 class="title">官方推荐</h2>
+          <div class="play-info">
+            <div class="room">
+              <span class="icon icon-room"></span>房间45</div>
+            <div class="hot">
+              <span class="icon icon-popularity"></span>人气100万</div>
+          </div>
+        </div>
+        <div class="rooms-wrapper" ref="governmentAdviceWrapper">
+          <ul class="room-list clearfix" ref="governmentAdviceList">
+            <li class="room-item" v-for="(item, index) in governmentAdvice" :key="index">
+              <div class="cover-img">
+                <img :src="FilePath + item.imgUrl" :onerror="errorImg">
+              </div>
+              <div class="title">{{item.title}}</div>
+              <div class="room-item-footer">
+                <div class="item fl">
                   <span class="icon icon-teacher"></span>{{item.name}}</div>
                 <div class="item">
                   <span class="icon icon-renqi"></span>{{item.hotCount}}</div>
                 <div class="item fr">
-                  <span class="icon icon-room"></span>{{item.liveRoomName}}</div>
+                  <span class="icon"></span>{{item.createTime.time | formatDate('yyyy-MM-dd')}}</div>
               </div>
             </li>
           </ul>
+        </div>
+      </div>
+      <!-- 精选话题 -->
+      <div class="content-item selectedTopic">
+        <div class="title-wrapper">
+          <h2 class="title">精选话题</h2>
+          <div class="play-info">
+            <div class="room">
+              <span class="icon icon-room"></span>房间45</div>
+            <div class="hot">
+              <span class="icon icon-popularity"></span>人气100万</div>
+          </div>
         </div>
       </div>
     </div>
@@ -69,7 +111,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-import HeaderSlide from '../../components/homepage/headerSlide'
+import 'common/js/formatdate.js'
+import HeaderSlide from 'components/homepage/headerSlide'
 import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
@@ -88,8 +131,9 @@ export default {
         _this.selectedTopic = response.data.selectedTopic
         _this.newGuild = response.data.newGuild
         _this.$nextTick(() => {
-          _this.$refs.hotLiveList.style.width = _this.hotVideo.length*202 + 'px'
-          _this.$refs.newLiveRoomList.style.width = _this.newLiveRoom.length*202 + 'px'
+          _this.$refs.hotLiveList.style.width = _this.hotVideo.length * 202 + 'px'
+          _this.$refs.newLiveRoomList.style.width = _this.newLiveRoom.length * 202 + 'px'
+          _this.$refs.governmentAdviceList.style.width = _this.governmentAdvice.length * 202 + 'px'
           _this._initScroll()
         })
       })
@@ -120,15 +164,23 @@ export default {
   },
   methods: {
     _initScroll() {
-      this.hotLiveScroll = new BScroll(this.$refs.hotLiveWrapper,{
-        click: true,
+      this.hotLiveScroll = new BScroll(this.$refs.hotLiveWrapper, {
+        // click: true,
         scrollX: true,
-        scrollY: false
+        scrollY: false,
+        preventDefault: false
       })
-      this.newLiveRoomScroll = new BScroll(this.$refs.newLiveRoomWrapper,{
+      this.newLiveRoomScroll = new BScroll(this.$refs.newLiveRoomWrapper, {
         click: true,
         scrollX: true,
-        scrollY: false
+        scrollY: false,
+        preventDefault: false
+      })
+      this.governmentAdviceScroll = new BScroll(this.$refs.governmentAdviceWrapper, {
+        click: true,
+        scrollX: true,
+        scrollY: false,
+        preventDefault: false
       })
     }
   }
@@ -153,8 +205,8 @@ export default {
           padding-top 16px
           >div
             display inline-block
+            line-height 24px
             font-size 10px
-            line-height 20px
             color item-font
             &.room
               margin-right 10px
@@ -173,8 +225,9 @@ export default {
       .rooms-wrapper
         margin-top 20px
         padding-top 18px
-        height 216px
+        // height 216px
         width 100%
+        overflow hidden
         bg-image('../../assets/homepage/home_cellBg')
         background-size 100%
         background-repeat: no-repeat;
@@ -190,16 +243,16 @@ export default {
                 height 100%
             .title
               margin-top 13px
+              line-height 20px
               font-size 13px
               color base-color
-              line-height 20px
             .room-item-footer     
               margin-top 20px         
               font-size 0
               text-align center
               .item
                 display inline-block
-                line-height 20px
+                line-height 24px
                 vertical-align top
                 font-size 10px
                 color item-font
@@ -213,4 +266,8 @@ export default {
                     bg-image('../../assets/homepage/home_roomIcon')
                   &.icon-renqi
                     bg-image('../../assets/homepage/home_popularityIcon')
+      &.selectedTopic
+        margin-top 25px
+        height 365px
+        background item-bg
 </style>
