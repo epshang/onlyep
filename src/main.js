@@ -12,6 +12,7 @@ require('swiper/dist/css/swiper.css')
 
 // mount with global
 Vue.use(VueAwesomeSwiper)
+Vue.prototype.FilePath = 'http://live.ranyes.cn/'
 
 Vue.use(VueRouter)
 let router = new VueRouter({

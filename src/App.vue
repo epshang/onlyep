@@ -62,9 +62,11 @@
   @import "./common/stylus/variable.styl"
   @import "./common/stylus/mixin.styl"
 
+  html
+    overflow-x hidden
   body
     background bg-color
-    overflow hidden
+    overflow-x hidden
   .menu-wrapper
     position fixed
     left 0

@@ -15,20 +15,50 @@
               <span class="icon icon-popularity"></span>人气100万</div>
           </div>
         </div>
-        <div class="rooms-wrapper" ref="wrapper">
-          <ul class="room-list clearfix">
+        <div class="rooms-wrapper" ref="hotLiveWrapper">
+          <ul class="room-list clearfix" ref="hotLiveList">
             <li class="room-item" v-for="(item, index) in hotVideo" :key="index">
               <div class="cover-img">
-                <img src="./1.jpg" alt="">
+                <img :src="FilePath + item.imgUrl" :onerror="errorImg">
               </div>
-              <div class="title">CME：黄金强力稳固1225 原油看跌40美元</div>
+              <div class="title">{{item.title}}</div>
               <div class="room-item-footer">
                 <div class="item fl">
-                  <span class="icon icon-teacher"></span>12</div>
+                  <span class="icon icon-teacher"></span>{{item.name}}</div>
                 <div class="item">
-                  <span class="icon icon-renqi"></span>12</div>
+                  <span class="icon icon-renqi"></span>{{item.hotCount}}</div>
                 <div class="item fr">
-                  <span class="icon icon-room"></span>12</div>
+                  <span class="icon icon-room"></span>{{item.liveRoomName}}</div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- 最新入驻 -->
+      <div class="content-item new-live">
+        <div class="title-wrapper">
+          <h2 class="title">最新入驻</h2>
+          <div class="play-info">
+            <div class="room">
+              <span class="icon icon-room"></span>房间45</div>
+            <div class="hot">
+              <span class="icon icon-popularity"></span>人气100万</div>
+          </div>
+        </div>
+        <div class="rooms-wrapper" ref="newLiveRoomWrapper">
+          <ul class="room-list clearfix" ref="newLiveRoomList">
+            <li class="room-item" v-for="(item, index) in newLiveRoom" :key="index">
+              <div class="cover-img">
+                <img :src="FilePath + item.imgUrl" :onerror="errorImg">
+              </div>
+              <div class="title">{{item.title}}</div>
+              <div class="room-item-footer">
+                <div class="item fl">
+                  <span class="icon icon-teacher"></span>{{item.name}}</div>
+                <div class="item">
+                  <span class="icon icon-renqi"></span>{{item.hotCount}}</div>
+                <div class="item fr">
+                  <span class="icon icon-room"></span>{{item.liveRoomName}}</div>
               </div>
             </li>
           </ul>
@@ -47,26 +77,20 @@ export default {
     HeaderSlide
   },
   created() {
-    var _this = this
-    axios.get('/api/home')
+    const _this = this
+    axios.post('/api/home')
       .then(function(response) {
-        console.log(_this.newLiveRoom)
+        console.log(response.data)
         _this.hotVideo = response.data.hotVideo
-        _this.governmentAdvice = response.data.governmentAdvice
         _this.newLiveRoom = response.data.newLiveRoom
+        _this.governmentAdvice = response.data.governmentAdvice
         //_this.videoRecord = response.data.videoRecord
         _this.selectedTopic = response.data.selectedTopic
         _this.newGuild = response.data.newGuild
-
         _this.$nextTick(() => {
-          if (!_this.scroll) {
-            _this.scroll = new BScroll(_this.$refs.wrapper, {
-              eventPassthrough: 'vertical',
-              click: true
-            });
-          } else {
-            _this.scroll.refresh();
-          }
+          _this.$refs.hotLiveList.style.width = _this.hotVideo.length*202 + 'px'
+          _this.$refs.newLiveRoomList.style.width = _this.newLiveRoom.length*202 + 'px'
+          _this._initScroll()
         })
       })
       .catch(function(response) {
@@ -75,6 +99,7 @@ export default {
   },
   data() {
     return {
+      errorImg: 'this.src="' + require('../../assets/error-img.png') + '"',
       slideImgs: [{
         type: 0,
         name: 'banner1',
@@ -92,6 +117,20 @@ export default {
       selectedTopic: [],
       newGuild: []
     }
+  },
+  methods: {
+    _initScroll() {
+      this.hotLiveScroll = new BScroll(this.$refs.hotLiveWrapper,{
+        click: true,
+        scrollX: true,
+        scrollY: false
+      })
+      this.newLiveRoomScroll = new BScroll(this.$refs.newLiveRoomWrapper,{
+        click: true,
+        scrollX: true,
+        scrollY: false
+      })
+    }
   }
 }
 </script>
@@ -101,6 +140,7 @@ export default {
   .header
     height: 210px
   .content
+    padding-bottom 68px
     .content-item
       .title-wrapper
         padding-top 25px
@@ -136,7 +176,8 @@ export default {
         height 216px
         width 100%
         bg-image('../../assets/homepage/home_cellBg')
-        background-size cover
+        background-size 100%
+        background-repeat: no-repeat;
         .room-list
           .room-item
             display inline-block
